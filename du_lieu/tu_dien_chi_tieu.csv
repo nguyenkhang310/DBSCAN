@@ -1,0 +1,9 @@
+indicator,name_vi,name_en,unit_vi,source_id,source_url
+NY.GDP.PCAP.KD,GDP bình quân đầu người,GDP per capita (constant 2015 US$),USD cố định năm 2015,2,https://data.worldbank.org/indicator/NY.GDP.PCAP.KD
+NY.GDP.MKTP.KD.ZG,Tăng trưởng GDP,GDP growth (annual %),%/năm,2,https://data.worldbank.org/indicator/NY.GDP.MKTP.KD.ZG
+FP.CPI.TOTL.ZG,Lạm phát giá tiêu dùng,"Inflation, consumer prices (annual %)",%/năm,2,https://data.worldbank.org/indicator/FP.CPI.TOTL.ZG
+SL.UEM.TOTL.ZS,Thất nghiệp - ước tính mô hình ILO,"Unemployment, total (% of total labor force) (modeled ILO estimate)",% lực lượng lao động,2,https://data.worldbank.org/indicator/SL.UEM.TOTL.ZS
+NE.TRD.GNFS.ZS,Thương mại - xuất khẩu cộng nhập khẩu,Trade (% of GDP),% GDP,2,https://data.worldbank.org/indicator/NE.TRD.GNFS.ZS
+NE.GDI.TOTL.ZS,Tổng tích lũy vốn,Gross capital formation (% of GDP),% GDP,2,https://data.worldbank.org/indicator/NE.GDI.TOTL.ZS
+SP.URB.TOTL.IN.ZS,Dân số đô thị,Urban population (% of total population),% dân số,2,https://data.worldbank.org/indicator/SP.URB.TOTL.IN.ZS
+NE.CON.GOVT.ZS,Chi tiêu tiêu dùng cuối cùng của chính phủ,General government final consumption expenditure (% of GDP),% GDP,2,https://data.worldbank.org/indicator/NE.CON.GOVT.ZS

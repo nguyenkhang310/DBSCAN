@@ -1,0 +1,42 @@
+# Python environments and caches
+.venv/
+venv/
+env/
+__pycache__/
+*.py[cod]
+*.egg-info/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.cache/
+build/
+dist/
+.coverage
+htmlcov/
+
+# Jupyter temporary files and local exports
+.ipynb_checkpoints/
+.jupyter/
+.ipython/
+*.nbconvert.html
+
+# Local configuration and credentials
+.env
+.env.*
+!.env.example
+.python-version
+.vscode/
+.idea/
+*.log
+*.tmp
+*.bak
+*.swp
+*.swo
+
+# macOS and Windows
+.DS_Store
+._*
+.AppleDouble/
+.LSOverride
+Thumbs.db
+Desktop.ini
