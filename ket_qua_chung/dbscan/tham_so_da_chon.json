@@ -1,0 +1,84 @@
+{
+  "author": "Nguyên Khang",
+  "fit_scope": "global_panel",
+  "study_years": [
+    2010,
+    2024
+  ],
+  "unit_of_observation": "country-year",
+  "metric": "euclidean",
+  "eps": 0.865,
+  "min_samples": 24,
+  "min_samples_includes_self": true,
+  "implementation": "dbscan_from_scratch in notebook 02",
+  "n_samples": 2315,
+  "feature_columns": [
+    "NY.GDP.PCAP.KD",
+    "NY.GDP.MKTP.KD.ZG",
+    "FP.CPI.TOTL.ZG",
+    "SL.UEM.TOTL.ZS",
+    "NE.TRD.GNFS.ZS",
+    "NE.GDI.TOTL.ZS",
+    "SP.URB.TOTL.IN.ZS",
+    "NE.CON.GOVT.ZS"
+  ],
+  "random_state": 42,
+  "input_checksum_audit": {
+    "clean": {
+      "actual": "fb84c5bf07cc05fc67b26adb0e1bfddf0f2c4306aeac7bccdeffe1f9ba1df588",
+      "metadata": "fb84c5bf07cc05fc67b26adb0e1bfddf0f2c4306aeac7bccdeffe1f9ba1df588"
+    },
+    "scaled": {
+      "actual": "796cb2d3cd7d288b2883cc478ba829432300fc786f2219a431febfd13f868de1",
+      "metadata": "796cb2d3cd7d288b2883cc478ba829432300fc786f2219a431febfd13f868de1"
+    }
+  },
+  "input_sha256": {
+    "clean": "fb84c5bf07cc05fc67b26adb0e1bfddf0f2c4306aeac7bccdeffe1f9ba1df588",
+    "scaled": "796cb2d3cd7d288b2883cc478ba829432300fc786f2219a431febfd13f868de1",
+    "metadata": "7a6b31bc17cda02205fdb89b5cacc5835e6fcdd4430f93a7eab566238cba7ad4"
+  },
+  "library_versions": {
+    "python": "3.12.9",
+    "numpy": "2.5.4",
+    "pandas": "3.1.1",
+    "scikit_learn": "1.9.1"
+  },
+  "selection_rule": {
+    "clusters": [
+      2,
+      10
+    ],
+    "min_countries_per_cluster": 3,
+    "max_largest_cluster_ratio": 0.9,
+    "target_coverage": 0.65,
+    "ranking": [
+      "coverage",
+      "silhouette"
+    ],
+    "n_candidates": 90,
+    "n_eligible": 2
+  },
+  "quality_target_met": false,
+  "summary": {
+    "n_samples": 2315,
+    "n_clusters": 4,
+    "n_clustered": 759,
+    "n_noise": 1556,
+    "coverage": 0.3278617710583153,
+    "noise_ratio": 0.6721382289416846,
+    "smallest_cluster": 18,
+    "largest_cluster_ratio": 0.8274044795783926,
+    "silhouette": 0.18892862030789112,
+    "metric_note": "non-noise, full sample"
+  },
+  "interpretation_warning": "Phân tích country-year hồi cứu; noise không tự chứng minh khủng hoảng. Không đạt mục tiêu độ phủ; chỉ dùng thăm dò.",
+  "tests": {
+    "known_answer_cases": 8,
+    "invalid_input_cases": 11,
+    "synthetic_sklearn_comparisons": 36,
+    "real_data_ari": 1.0,
+    "core_and_noise_match": true,
+    "ambiguous_border_checked": true
+  }
+}

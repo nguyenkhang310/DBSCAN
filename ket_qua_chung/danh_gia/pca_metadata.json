@@ -1,0 +1,16 @@
+{
+  "feature_columns": [
+    "NY.GDP.PCAP.KD",
+    "NY.GDP.MKTP.KD.ZG",
+    "FP.CPI.TOTL.ZG",
+    "SL.UEM.TOTL.ZS",
+    "NE.TRD.GNFS.ZS",
+    "NE.GDI.TOTL.ZS",
+    "SP.URB.TOTL.IN.ZS",
+    "NE.CON.GOVT.ZS"
+  ],
+  "explained_variance_ratio": [
+    0.3193044231098874,
+    0.198106947850214
+  ]
+}

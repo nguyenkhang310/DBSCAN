@@ -1,56 +1,13 @@
 {
-  "dataset": "World Bank - World Development Indicators (WDI)",
+  "dataset": "World Bank WDI",
   "source_id": 2,
-  "source_lastupdated": "2026-10-08",
   "snapshot_access_date": "2026-11-07",
-  "preprocessed_by": "Duc (Notebook 01)",
   "study_years": [
     2010,
     2024
   ],
-  "study_scope": {
-    "mode": "Option_C_Panel_And_Yearly_Ready",
-    "description": "Dữ liệu xuất ra bao gồm toàn bộ panel 2010–2024 đã làm sạch (2.334 quan sát country-year của 162 nền kinh tế). Chuẩn hóa mặc định được fit trên toàn panel bằng RobustScaler sau khi biến đổi giảm lệch, giữ nguyên hệ quy chiếu chung để so sánh sự dịch chuyển qua các năm. Khang và Khoa có thể phân cụm trực tiếp trên toàn panel hoặc lọc theo năm (ví dụ năm có độ phủ cao nhất 2017 với 158 quốc gia, hoặc các năm mốc 2015, 2019, 2022, 2023, 2024).",
-    "best_coverage_year": 2017,
-    "recommended_milestone_years": [
-      2015,
-      2017,
-      2019,
-      2022,
-      2023,
-      2024
-    ],
-    "samples_per_year": {
-      "2010": 154,
-      "2011": 154,
-      "2012": 154,
-      "2013": 155,
-      "2014": 157,
-      "2015": 157,
-      "2016": 157,
-      "2017": 158,
-      "2018": 156,
-      "2019": 157,
-      "2020": 157,
-      "2021": 156,
-      "2022": 156,
-      "2023": 155,
-      "2024": 151
-    }
-  },
   "key_columns": [
     "country",
-    "year"
-  ],
-  "metadata_columns_in_clean": [
-    "country",
-    "country_name",
-    "year",
-    "is_aggregate"
-  ],
-  "metadata_columns_in_scaled": [
-    "country",
-    "country_name",
     "year"
   ],
   "feature_columns": [
@@ -63,82 +20,31 @@
     "SP.URB.TOTL.IN.ZS",
     "NE.CON.GOVT.ZS"
   ],
-  "dropped_features": [],
-  "entity_filtering": {
-    "rule": "is_aggregate == 0 (verified against countries.json region.id != 'NA')",
-    "raw_total_entities": 266,
-    "removed_aggregates_count": 49,
-    "candidate_economies_count": 217,
-    "retained_economies_count": 162,
-    "fully_dropped_economies_due_to_missing": [
-      "ABW",
-      "AND",
-      "ASM",
-      "ATG",
-      "BDI",
-      "BMU",
-      "BRB",
-      "CHI",
-      "CUB",
-      "CUW",
-      "CYM",
-      "DMA",
-      "ERI",
-      "FRO",
-      "FSM",
-      "GIB",
-      "GRD",
-      "GRL",
-      "GUM",
-      "GUY",
-      "IMN",
-      "JAM",
-      "JOR",
-      "KIR",
-      "KNA",
-      "LBR",
-      "LCA",
-      "LIE",
-      "MAF",
-      "MCO",
-      "MHL",
-      "MMR",
-      "MNP",
-      "NCL",
-      "NGA",
-      "NRU",
-      "PLW",
-      "PNG",
-      "PRI",
-      "PRK",
-      "PYF",
-      "SMR",
-      "SOM",
-      "SSD",
-      "SXM",
-      "SYC",
-      "SYR",
-      "TCA",
-      "TKM",
-      "TTO",
-      "TUV",
-      "VCT",
-      "VGB",
-      "VIR",
-      "XKX"
-    ]
+  "study_scope": {
+    "mode": "global_panel",
+    "samples_per_year": {
+      "2010": 154,
+      "2011": 153,
+      "2012": 152,
+      "2013": 153,
+      "2014": 155,
+      "2015": 156,
+      "2016": 156,
+      "2017": 155,
+      "2018": 156,
+      "2019": 156,
+      "2020": 156,
+      "2021": 156,
+      "2022": 155,
+      "2023": 151,
+      "2024": 151
+    }
   },
   "missing_value_policy": {
-    "method": "Short-term time-series interpolation within each country followed by complete-case filtering",
-    "steps": [
-      "1. Sort observations by (country, year) ascending.",
-      "2. Within each country, apply linear interpolation for internal gaps up to 2 consecutive years (limit=2, limit_area='inside').",
-      "3. Apply boundary forward-fill and backward-fill up to 1 year (ffill limit=1, bfill limit=1).",
-      "4. Drop any remaining (country, year) rows that still contain NaN in any of the 8 feature_columns."
-    ],
-    "cells_recovered_by_interpolation": 140,
-    "rows_before_interpolation_complete_case": 2310,
-    "rows_after_interpolation_complete_case": 2334
+    "internal_max_gap": 2,
+    "boundary_max_gap": 1,
+    "remaining_missing": "drop rows",
+    "filled_cells": 32
   },
   "transformations": {
     "log1p_columns": [
@@ -154,76 +60,40 @@
       "NY.GDP.MKTP.KD.ZG",
       "NE.GDI.TOTL.ZS",
       "SP.URB.TOTL.IN.ZS"
-    ],
-    "formulas": {
-      "log1p": "np.log1p(x) = ln(1 + x)",
-      "signed_log1p": "np.sign(x) * np.log1p(np.abs(x))",
-      "identity": "x"
-    }
+    ]
   },
   "scaling": {
-    "scaler": "sklearn.preprocessing.RobustScaler",
-    "fit_scope": "global_panel (n = 2334 observations)",
+    "scaler": "RobustScaler",
+    "fit_scope": "global_panel",
     "quantile_range": [
-      25.0,
-      75.0
+      25,
+      75
     ],
-    "with_centering": true,
-    "with_scaling": true,
     "center_median": {
-      "NY.GDP.PCAP.KD": 8.648352793255423,
-      "NY.GDP.MKTP.KD.ZG": 3.4143542569310297,
-      "FP.CPI.TOTL.ZG": 1.4413413554894683,
-      "SL.UEM.TOTL.ZS": 1.8904729393139483,
-      "NE.TRD.GNFS.ZS": 4.355296176044069,
-      "NE.GDI.TOTL.ZS": 23.54139959890805,
-      "SP.URB.TOTL.IN.ZS": 63.342781182017944,
-      "NE.CON.GOVT.ZS": 2.840705051043041
+      "NY.GDP.PCAP.KD": 8.654744778979696,
+      "NY.GDP.MKTP.KD.ZG": 3.40687328176345,
+      "FP.CPI.TOTL.ZG": 1.440056517408004,
+      "SL.UEM.TOTL.ZS": 1.889339797566919,
+      "NE.TRD.GNFS.ZS": 4.356281153197149,
+      "NE.GDI.TOTL.ZS": 23.5436701876084,
+      "SP.URB.TOTL.IN.ZS": 63.4127255007908,
+      "NE.CON.GOVT.ZS": 2.8403973000849696
     },
     "scale_iqr": {
-      "NY.GDP.PCAP.KD": 2.2734553849945396,
-      "NY.GDP.MKTP.KD.ZG": 4.048429538647544,
-      "FP.CPI.TOTL.ZG": 1.0737522781022062,
-      "SL.UEM.TOTL.ZS": 0.8547349259676316,
-      "NE.TRD.GNFS.ZS": 0.6822939260253822,
-      "NE.GDI.TOTL.ZS": 8.51394577570995,
-      "SP.URB.TOTL.IN.ZS": 35.77256276379304,
-      "NE.CON.GOVT.ZS": 0.45969146017919327
+      "NY.GDP.PCAP.KD": 2.2870812648324126,
+      "NY.GDP.MKTP.KD.ZG": 4.03947366165959,
+      "FP.CPI.TOTL.ZG": 1.0695176036902225,
+      "SL.UEM.TOTL.ZS": 0.8523428118921252,
+      "NE.TRD.GNFS.ZS": 0.6830105806982578,
+      "NE.GDI.TOTL.ZS": 8.496653171923896,
+      "SP.URB.TOTL.IN.ZS": 35.69188114440845,
+      "NE.CON.GOVT.ZS": 0.45980350883082277
     }
   },
   "outputs": {
-    "clean_file": "du_lieu/du_lieu_sach/wdi_clean.csv",
-    "clean_rows": 2334,
-    "clean_columns": [
-      "country",
-      "country_name",
-      "year",
-      "is_aggregate",
-      "NY.GDP.PCAP.KD",
-      "NY.GDP.MKTP.KD.ZG",
-      "FP.CPI.TOTL.ZG",
-      "SL.UEM.TOTL.ZS",
-      "NE.TRD.GNFS.ZS",
-      "NE.GDI.TOTL.ZS",
-      "SP.URB.TOTL.IN.ZS",
-      "NE.CON.GOVT.ZS"
-    ],
-    "clean_sha256": "0ba922072fedf8cddf0e5e90ac0aae84cb19546e6c6bf5fe32cbc4cf5b76a3d0",
-    "scaled_file": "du_lieu/du_lieu_chuan_hoa/wdi_scaled.csv",
-    "scaled_rows": 2334,
-    "scaled_columns": [
-      "country",
-      "country_name",
-      "year",
-      "NY.GDP.PCAP.KD",
-      "NY.GDP.MKTP.KD.ZG",
-      "FP.CPI.TOTL.ZG",
-      "SL.UEM.TOTL.ZS",
-      "NE.TRD.GNFS.ZS",
-      "NE.GDI.TOTL.ZS",
-      "SP.URB.TOTL.IN.ZS",
-      "NE.CON.GOVT.ZS"
-    ],
-    "scaled_sha256": "a7696b9bf03daa7c03409e616c693a7cc25e22837c3e8ebe01c3da1660edc799"
+    "clean_rows": 2315,
+    "scaled_rows": 2315,
+    "clean_sha256": "fb84c5bf07cc05fc67b26adb0e1bfddf0f2c4306aeac7bccdeffe1f9ba1df588",
+    "scaled_sha256": "796cb2d3cd7d288b2883cc478ba829432300fc786f2219a431febfd13f868de1"
   }
 }

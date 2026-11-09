@@ -1,0 +1,24 @@
+{
+  "DBSCAN": {
+    "eps": 0.865,
+    "min_samples": 24
+  },
+  "K-Means": {
+    "n_clusters": 5,
+    "n_init": 10,
+    "random_state": 42
+  },
+  "Agglomerative": {
+    "n_clusters": 2,
+    "linkage": "ward",
+    "metric": "euclidean"
+  },
+  "GMM": {
+    "n_components": 10,
+    "covariance_type": "full",
+    "n_init": 3,
+    "random_state": 42,
+    "max_iter": 500,
+    "reg_covar": 1e-06
+  }
+}

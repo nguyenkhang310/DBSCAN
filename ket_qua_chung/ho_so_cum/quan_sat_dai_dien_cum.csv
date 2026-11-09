@@ -1,0 +1,21 @@
+country,year,country_name,cluster
+CYP,2010,Cyprus,0
+PRT,2024,Portugal,0
+DEU,2011,Germany,0
+PRT,2023,Portugal,0
+POL,2010,Poland,0
+CMR,2012,Cameroon,1
+MLI,2024,Mali,1
+CMR,2013,Cameroon,1
+CMR,2011,Cameroon,1
+CMR,2019,Cameroon,1
+IND,2014,India,2
+TJK,2019,Tajikistan,2
+IND,2015,India,2
+IND,2022,India,2
+TJK,2022,Tajikistan,2
+ZAF,2014,South Africa,3
+ZAF,2017,South Africa,3
+ZAF,2016,South Africa,3
+ZAF,2015,South Africa,3
+ZAF,2018,South Africa,3
