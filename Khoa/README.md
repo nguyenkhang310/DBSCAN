@@ -6,7 +6,7 @@ Thiết kế đánh giá DBSCAN và so sánh với K-Means, Agglomerative Cluste
 
 ## Notebook phụ trách
 
-[03_danh_gia_va_so_sanh.ipynb](notebook/03_danh_gia_va_so_sanh.ipynb) gồm **13 mục**. Hiện notebook chỉ có Markdown; chưa triển khai thuật toán đối chứng, chưa có chỉ số hoặc kết luận thực nghiệm.
+[03_danh_gia_va_so_sanh.ipynb](notebook/03_danh_gia_va_so_sanh.ipynb) gồm **13 mục** và đã triển khai đầy đủ mã nguồn đánh giá, thuật toán đối chứng, PCA, hồ sơ cụm và phân tích noise. Notebook đang chờ hai đầu vào DBSCAN do Khang bàn giao để chạy thực nghiệm cuối trên dữ liệu thật.
 
 ## Đầu vào cần dùng
 
@@ -18,7 +18,21 @@ Thiết kế đánh giá DBSCAN và so sánh với K-Means, Agglomerative Cluste
 | `ket_qua_chung/dbscan/dbscan_labels.csv` | Khang | Nhãn và loại điểm DBSCAN |
 | `ket_qua_chung/dbscan/tham_so_da_chon.json` | Khang | Cấu hình cuối và phạm vi mô hình |
 
-Đường dẫn tính từ gốc repo. Những đầu vào này chưa có ở bước khởi tạo.
+Đường dẫn tính từ gốc repo. Khi nhận file bàn giao, giữ nguyên tên và đặt đúng đường dẫn trong bảng; không chép các file đầu vào vào `Khoa/notebook/`.
+
+```text
+DBSCAN/
+├── du_lieu/
+│   ├── du_lieu_sach/wdi_clean.csv
+│   └── du_lieu_chuan_hoa/
+│       ├── wdi_scaled.csv
+│       └── preprocessing_metadata.json
+└── ket_qua_chung/dbscan/
+    ├── dbscan_labels.csv
+    └── tham_so_da_chon.json
+```
+
+Notebook tự tìm gốc repo và hiển thị bảng `CÓ/THIẾU` cho cả năm đầu vào trước khi đọc dữ liệu. Nếu thiếu file, notebook dừng với thông báo liệt kê đúng đường dẫn cần bổ sung.
 
 ## Kết quả cần bàn giao
 
