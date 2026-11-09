@@ -1,0 +1,66 @@
+{
+  "split_seed": 42,
+  "split_unit": "country",
+  "target_ratios": [
+    0.6,
+    0.2,
+    0.2
+  ],
+  "n_countries": {
+    "test": 33,
+    "train": 97,
+    "validation": 32
+  },
+  "eps": 0.902,
+  "min_samples": 16,
+  "selected_using": "validation_only",
+  "assignment_rule": "nearest train core within eps, else -1; no cluster expansion",
+  "validation_target_met": false,
+  "selection_rule": {
+    "train_clusters": [
+      2,
+      10
+    ],
+    "min_countries": 3,
+    "max_largest_cluster_ratio": 0.9,
+    "target_validation_coverage": 0.65,
+    "ranking": [
+      "validation_coverage",
+      "validation_silhouette"
+    ],
+    "n_candidates": 90,
+    "n_eligible": 1
+  },
+  "train_center": {
+    "NY.GDP.PCAP.KD": 8.693814648187514,
+    "NY.GDP.MKTP.KD.ZG": 3.31568621648204,
+    "FP.CPI.TOTL.ZG": 1.440056517408004,
+    "SL.UEM.TOTL.ZS": 1.9558604799084813,
+    "NE.TRD.GNFS.ZS": 4.372772314496906,
+    "NE.GDI.TOTL.ZS": 23.4774930613878,
+    "SP.URB.TOTL.IN.ZS": 65.8732136723372,
+    "NE.CON.GOVT.ZS": 2.8656002011527835
+  },
+  "train_scale": {
+    "NY.GDP.PCAP.KD": 2.0999110853756724,
+    "NY.GDP.MKTP.KD.ZG": 3.8013124581136406,
+    "FP.CPI.TOTL.ZG": 0.9932648349049086,
+    "SL.UEM.TOTL.ZS": 0.9333718251905743,
+    "NE.TRD.GNFS.ZS": 0.6526175038070736,
+    "NE.GDI.TOTL.ZS": 8.707005291982998,
+    "SP.URB.TOTL.IN.ZS": 31.513765442757695,
+    "NE.CON.GOVT.ZS": 0.4183149470058014
+  },
+  "feature_columns": [
+    "NY.GDP.PCAP.KD",
+    "NY.GDP.MKTP.KD.ZG",
+    "FP.CPI.TOTL.ZG",
+    "SL.UEM.TOTL.ZS",
+    "NE.TRD.GNFS.ZS",
+    "NE.GDI.TOTL.ZS",
+    "SP.URB.TOTL.IN.ZS",
+    "NE.CON.GOVT.ZS"
+  ],
+  "train_implementation_ari": 1.0,
+  "input_clean_sha256": "fb84c5bf07cc05fc67b26adb0e1bfddf0f2c4306aeac7bccdeffe1f9ba1df588"
+}

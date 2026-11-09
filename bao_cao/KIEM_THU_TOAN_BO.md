@@ -1,42 +1,47 @@
-# Kiểm thử toàn bộ luồng notebook
+# Kiểm chứng luồng dữ liệu và mô hình
 
-Ngày kiểm tra: **09/11/2026**. Python 3.12.9, môi trường theo requirements.txt.
+## Phạm vi và môi trường
 
-## Thay đổi chính
+Bốn notebook được thực thi theo thứ tự 01 → 02 → 03 → 04, mỗi notebook dùng kernel mới. Môi trường Python 3.12.9, NumPy 2.5.4, pandas 3.1.1, scikit-learn 1.9.1; các dependency trực tiếp được cố định trong requirements.txt. pip check không phát hiện dependency hỏng.
 
-- Bỏ mô tả lặp, comment thừa, hàm đệ quy suy luận cấu hình và các lớp xử lý tổng quát không cần thiết.
-- Nội suy đúng toàn khoảng thiếu: bên trong tối đa 2 năm, ở biên đúng 1 năm. Không lấp một phần khoảng thiếu dài. Mẫu sửa còn **2.315** hàng, thay cho **2.334**; tất cả kết quả phía sau được tạo lại.
-- CSV đầu ra dùng LF và checksum mới; `.gitattributes` giữ xuống dòng nhất quán.
-- Hoàn thiện Việt Nam/Đông Nam Á và bản đồ ngoại tuyến. Dùng mã ADM0_A3, tránh mã WB cũ ROM/TMP cho Romania/Timor-Leste.
-
-## Chạy và tái lập
-
-| Notebook | Dòng code | Code cell | Lần chạy từ gốc repo |
+| Notebook | Code cell | Dòng code | Một lượt thực thi |
 | --- | ---: | ---: | ---: |
-| 01_tien_xu_ly_du_lieu | 185 | 13 | 5.52s |
-| 02_dbscan | 365 | 19 | 10.05s |
-| 03_danh_gia_va_so_sanh | 198 | 12 | 10.54s |
-| 04_phan_tich_viet_nam | 105 | 7 | 3.11s |
+| 01_tien_xu_ly_du_lieu | 13 | 190 | 5.21 s |
+| 02_dbscan | 23 | 443 | 11.34 s |
+| 03_danh_gia_va_so_sanh | 12 | 189 | 9.04 s |
+| 04_phan_tich_viet_nam | 7 | 101 | 2.73 s |
 
-Đã chạy cả chuỗi 01 → 02 → 03 → 04 bằng kernel mới, rồi chạy lại từ từng thư mục notebook. So sánh SHA-256 **54 file CSV/JSON/PNG** của hai lượt để xác nhận kết quả tái lập. Không dùng trạng thái còn lại từ phiên trước.
+Mỗi code cell tối đa 40 dòng. Không có comment thừa, import chưa dùng hoặc hàm chưa được gọi. Phần huấn luyện ngoài mẫu làm tăng số dòng ở notebook 02 vì bổ sung phép chia, chuẩn hóa train, chọn validation và đánh giá test; các bước này được giữ riêng để kiểm tra rò rỉ dữ liệu.
 
-## Kiểm tra
+## Kiểm tra dữ liệu
 
-| Phạm vi | Kiểm tra |
-| --- | --- |
-| Nguồn | Checksum 19 file, bảng rộng/dài khớp, không sửa dữ liệu thô |
-| Nội suy | 8 ca: khoảng ngắn/dài, biên, toàn thiếu, chuỗi một điểm; không thay giá trị gốc có sẵn |
-| Chuẩn hóa | Khóa khớp; không NaN/inf; trung vị 0, IQR 1; tái tạo đúng từ metadata |
-| DBSCAN | 8 ca biết đáp án, 11 ca đầu vào sai, 36 đối chiếu giả lập; khớp scikit-learn trên WDI |
-| Nhãn xuất | Core đúng mật độ; border có core cùng cụm; noise không gần core; khóa một-một |
-| Đánh giá | Ba chỉ số tính lại trên đúng mẫu; 54 cấu hình đối chứng; GMM chọn trong mô hình hội tụ |
-| Việt Nam | 15 năm; láng giềng cùng năm; độ phủ đủ 11 mã Đông Nam Á |
-| Bản đồ | Ranh giới đọc từ file; xuất riêng 12 nền kinh tế không có hình học ở tỷ lệ 1:110m |
-| Notebook | Đúng 10/14/13/6 đề mục; mọi code cell thực thi, không có output lỗi/cảnh báo |
-| Repository | Không có .py/checkpoint/môi trường ảo trong nguồn; kiểm tra liên kết và diff trước commit |
+- Checksum 19 file nguồn; CSV rộng/dài khớp giá trị và khóa, metadata xác nhận loại nhóm tổng hợp.
+- Nội suy có tám ca kiểm thử: khoảng ngắn/dài, biên, toàn thiếu và chuỗi một điểm. Mọi giá trị gốc không thiếu được bảo toàn; 32 ô nội suy có nhật ký, 10 ô thuộc mẫu cuối.
+- Mẫu sạch có 2.315 hàng, 162 nền kinh tế, khóa country–year duy nhất; mọi đặc trưng hữu hạn. Chuẩn hóa được tái tạo từ log/signed-log và tham số metadata.
+- Checksum đầu vào được kiểm tra trước phân cụm; đọc UTF-8 và xuất CSV LF để nhất quán giữa các hệ điều hành.
 
-Các hình đã được xuất lại; kiểm tra bố cục tương quan, phân cụm, so sánh và bản đồ. Bản đồ tỷ lệ thấp không thể hiện một số nước nhỏ, không đồng nghĩa thiếu dữ liệu kinh tế.
+## Kiểm tra thuật toán và chỉ số
 
-## Kết quả và giới hạn
+- DBSCAN: tám ca biết trước, 11 đầu vào sai, 36 cấu hình giả lập, trường hợp border nằm giữa hai cụm.
+- Bản tự viết được đối chiếu độc lập với scikit-learn trên WDI toàn panel và train: ARI = 1, cùng core và noise.
+- Kiểm tra mật độ core, border có core cùng cụm và noise không nằm trong eps của core.
+- Mọi Silhouette, DBI và CH trong bảng đối chứng được tính lại trên đúng tập mẫu và nhãn xuất; không dùng điểm số của hai mẫu khác nhau như cùng phạm vi.
+- Ba ca mẫu rỗng, một cụm và mỗi điểm một nhãn kiểm tra xử lý chỉ số không hợp lệ. Test ngoài mẫu có một nhãn nên ba chỉ số đều N/A, không được điền 0.
 
-DBSCAN có 4 cụm, 759 non-noise và 1556 noise (67.21%); Silhouette non-noise 0.1889. Chưa đạt mục tiêu độ phủ trong lưới đã thử. Kiểm thử đúng thuật toán không đồng nghĩa mô hình có chất lượng cao. Các năm cùng quốc gia không độc lập; kết quả hồi cứu không chứng minh khả năng dự báo hoặc nguyên nhân kinh tế.
+## Kiểm tra huấn luyện ngoài mẫu
+
+- Phép chia seed 42 tạo đúng 97/32/33 quốc gia, tương ứng 1.397/464/454 điểm; không trùng quốc gia giữa ba tập.
+- Trung vị/IQR của scaler được fit lại từ riêng 1.397 điểm train và so với cấu hình đã xuất. Không dùng scaler toàn panel cho thí nghiệm này.
+- 90 cấu hình train/validation được lưu; bảng tìm kiếm không có cột test. Cấu hình chọn được tái tính từ validation bằng đúng quy tắc đã khai báo.
+- Nhãn validation/test được tái tạo độc lập bằng core train gần nhất trong eps; điểm ngoài bán kính bị từ chối. Không fit hay tạo cụm từ test.
+- Kiểm tra hai ca gán điểm: điểm đúng biên eps và mô hình không có core. Khóa các file nhãn ngoài mẫu khớp phép chia và dữ liệu sạch.
+
+## Tái lập và tài liệu
+
+Chuỗi được chạy từ cả gốc repo lẫn thư mục notebook với kernel mới. **51 file CSV/JSON/PNG** được đối chiếu SHA-256 qua hai lượt; không có thay đổi đầu ra. Mọi code cell có execution count liên tục, không có output lỗi hoặc cảnh báo. Xuất HTML được dùng để kiểm tra nội dung và công thức; biểu đồ được kiểm tra trục/chú giải/bố cục.
+
+Các file hình sao chép trùng, bảng hồ sơ dạng rộng trùng thông tin dạng dài và thư viện plotly/wbgapi không được sử dụng đã được bỏ. Báo cáo liên kết trực tiếp tới hình gốc. Dữ liệu/API gốc, metadata, checksum và bảng kiểm chứng được giữ làm bằng chứng nguồn và kết quả.
+
+## Kết luận kiểm chứng
+
+Luồng tính toán, tham số, phép chia và chỉ số được tái lập. **Chất lượng mô hình chưa đạt yêu cầu tổng quát hóa tốt**: toàn panel phủ 32,79%, test phủ 19,82% với một nhãn cụm; không có accuracy % vì thiếu nhãn chuẩn. Kết luận kỹ thuật và kết luận nghiên cứu được phân biệt trong [báo cáo kết quả](BAO_CAO_KET_QUA.md).

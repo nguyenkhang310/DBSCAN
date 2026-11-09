@@ -23,16 +23,6 @@
     "NE.CON.GOVT.ZS"
   ],
   "random_state": 42,
-  "input_checksum_audit": {
-    "clean": {
-      "actual": "fb84c5bf07cc05fc67b26adb0e1bfddf0f2c4306aeac7bccdeffe1f9ba1df588",
-      "metadata": "fb84c5bf07cc05fc67b26adb0e1bfddf0f2c4306aeac7bccdeffe1f9ba1df588"
-    },
-    "scaled": {
-      "actual": "796cb2d3cd7d288b2883cc478ba829432300fc786f2219a431febfd13f868de1",
-      "metadata": "796cb2d3cd7d288b2883cc478ba829432300fc786f2219a431febfd13f868de1"
-    }
-  },
   "input_sha256": {
     "clean": "fb84c5bf07cc05fc67b26adb0e1bfddf0f2c4306aeac7bccdeffe1f9ba1df588",
     "scaled": "796cb2d3cd7d288b2883cc478ba829432300fc786f2219a431febfd13f868de1",
@@ -70,6 +60,8 @@
     "smallest_cluster": 18,
     "largest_cluster_ratio": 0.8274044795783926,
     "silhouette": 0.18892862030789112,
+    "davies_bouldin": 0.9771873329226937,
+    "calinski_harabasz": 106.81010794214131,
     "metric_note": "non-noise, full sample"
   },
   "interpretation_warning": "Phân tích country-year hồi cứu; noise không tự chứng minh khủng hoảng. Không đạt mục tiêu độ phủ; chỉ dùng thăm dò.",

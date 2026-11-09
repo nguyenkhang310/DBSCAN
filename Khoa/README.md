@@ -9,3 +9,7 @@ Bảng so sánh có hai phạm vi: chính sách từng thuật toán và cùng t
 Kết quả ở `ket_qua_chung/danh_gia/`, `ho_so_cum/`, `phan_tich_nhieu/`; 4 biểu đồ ở `Khoa/bieu_do/`.
 
 [Quy trình chạy](../README.md) · [Kiểm thử](../bao_cao/KIEM_THU_TOAN_BO.md).
+
+Bảng đánh giá dùng mô hình toàn panel; kết quả train/validation/test là thí nghiệm riêng trong notebook 02. Không báo accuracy khi không có nhãn chuẩn. Hồ sơ cụm chỉ lưu một bảng dạng dài, tránh xuất lặp.
+
+[Báo cáo kết quả](../bao_cao/BAO_CAO_KET_QUA.md).

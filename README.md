@@ -36,7 +36,7 @@ Trong Jupyter hoặc VS Code, chọn kernel `.venv`, mở từng notebook và **
 ## Dữ liệu và bàn giao
 
 - [CSV gốc](du_lieu/du_lieu_tho/wdi_2010_2024.csv): 3.990 hàng, gồm 217 nền kinh tế và 49 nhóm tổng hợp.
-- [CSV sạch](du_lieu/du_lieu_sach/wdi_clean.csv): **2,315 quốc gia–năm, 162 nền kinh tế** sau lọc và nội suy ngắn hạn.
+- [CSV sạch](du_lieu/du_lieu_sach/wdi_clean.csv): **2.315 quốc gia–năm, 162 nền kinh tế** sau lọc và nội suy ngắn hạn.
 - [CSV chuẩn hóa](du_lieu/du_lieu_chuan_hoa/wdi_scaled.csv): 8 biến, log/signed-log và RobustScaler toàn panel.
 - [Metadata](du_lieu/du_lieu_chuan_hoa/preprocessing_metadata.json) ghi thứ tự biến, tham số và checksum; [nhật ký nội suy](du_lieu/du_lieu_sach/nhat_ky_noi_suy.csv) ghi các ô được điền.
 
@@ -48,20 +48,26 @@ Khóa bàn giao là **`country` + `year`**, mỗi khóa một hàng. Mô hình d
 | --- | --- |
 | `du_lieu/` | Dữ liệu gốc, sạch, chuẩn hóa, ranh giới bản đồ |
 | `Duc/`, `Khang/`, `Khoa/` | Notebook và biểu đồ từng người |
-| `ket_qua_chung/dbscan/` | Nhãn, tham số, Grid Search, độ nhạy |
+| `ket_qua_chung/dbscan/` | Nhãn toàn panel, tham số, Grid Search, độ nhạy và kiểm định ngoài mẫu |
 | `ket_qua_chung/danh_gia/` | Chỉ số và thuật toán đối chứng |
 | `ket_qua_chung/ho_so_cum/`, `phan_tich_nhieu/` | Hồ sơ cụm và noise |
 | `ket_qua_chung/viet_nam/` | Việt Nam, Đông Nam Á, kiểm tra bản đồ |
-| `ket_qua_chung/bieu_do_bao_cao/` | Hình dùng chung |
-| `bao_cao/` | Biên bản kiểm thử và thư mục slide |
+| `bao_cao/` | Báo cáo kết quả và biên bản kiểm thử |
 
-## Kết quả và giới hạn
+## Kết quả mô hình
 
-DBSCAN chọn `eps=0.865`, `min_samples=24`: **4 cụm**, 759 điểm thuộc cụm, **noise 67.21%**, Silhouette non-noise **0.1889**. Bản tự viết khớp scikit-learn về phân hoạch, core và noise.
+| Phạm vi | Số điểm | Độ phủ | Noise/từ chối | Silhouette |
+| --- | ---: | ---: | ---: | ---: |
+| Mô tả toàn panel | 2.315 | 32,79% | 67,21% | 0,1889 |
+| Train, 97 quốc gia | 1.397 | 36,15% | 63,85% | 0,0986 |
+| Validation, 32 quốc gia | 464 | 25,22% | 74,78% | 0,1839 |
+| Test, 33 quốc gia | 454 | 19,82% | 80,18% | N/A: chỉ có một nhãn cụm |
 
-Cấu hình chưa đạt độ phủ 65% trong lưới 90 lần thử, chỉ dùng thăm dò. Không xem noise là bằng chứng khủng hoảng. Điểm số phải đọc cùng độ phủ; Khoa có bảng so sánh trên cùng tập non-noise để tránh so các mẫu khác nhau. Nội suy và chuẩn hóa toàn panel phục vụ hồi cứu, không đánh giá dự báo.
+Thí nghiệm ngoài mẫu chia theo quốc gia khoảng 60%/20%/20%, fit RobustScaler chỉ trên train và chọn tham số bằng validation. Test được đánh giá sau khi cố định cấu hình. Điểm mới được gán theo core train gần nhất trong eps, không fit lại DBSCAN trên test.
 
-[Kiểm thử toàn bộ](bao_cao/KIEM_THU_TOAN_BO.md) · [Hướng dẫn dữ liệu](du_lieu/README.md) · [Đức](Duc/README.md) · [Khang](Khang/README.md) · [Khoa](Khoa/README.md)
+**Không có accuracy % vì dữ liệu không có nhãn chuẩn.** Độ phủ là tỷ lệ điểm được gán, không phải tỷ lệ dự đoán đúng. ARI = 1 khi đối chiếu bản tự viết và scikit-learn xác nhận hai triển khai khớp nhau. Chất lượng phân cụm và khả năng ngoài mẫu hiện còn hạn chế; mục tiêu độ phủ chưa đạt.
+
+[Báo cáo kết quả](bao_cao/BAO_CAO_KET_QUA.md) · [Kiểm thử toàn bộ](bao_cao/KIEM_THU_TOAN_BO.md) · [Dữ liệu](du_lieu/README.md) · [Đức](Duc/README.md) · [Khang](Khang/README.md) · [Khoa](Khoa/README.md)
 
 ## Làm việc nhóm
 
