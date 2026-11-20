@@ -1,6 +1,6 @@
 # Báo cáo giữa kỳ - DBSCAN
 
-[Notebook giữa kỳ](DBSCAN%20gi%E1%BB%AFa%20k%E1%BB%B3.ipynb) giải thích DBSCAN và minh họa trên 12 nền kinh tế giả lập. Mỗi điểm có hai tọa độ: tăng trưởng GDP và tỷ lệ thất nghiệp. Dữ liệu và biểu đồ được lưu trong notebook.
+[Notebook giữa kỳ](Nh%C3%B3m%2017_DBSCAN%20gi%E1%BB%AFa%20k%E1%BB%B3.ipynb) giải thích DBSCAN và minh họa trên 12 nền kinh tế giả lập. Mỗi điểm có hai tọa độ: tăng trưởng GDP và tỷ lệ thất nghiệp. Dữ liệu và biểu đồ được lưu trong notebook.
 
 | Phần | Thành viên | MSSV |
 | --- | --- | --- |
