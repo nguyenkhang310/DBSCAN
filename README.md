@@ -5,6 +5,8 @@
 
 Phân cụm quốc gia theo đặc điểm kinh tế vĩ mô, phát hiện quan sát khác biệt và phân tích Việt Nam. Dữ liệu World Bank WDI, 8 chỉ tiêu, giai đoạn 2010–2024.
 
+Báo cáo giữa kỳ minh họa DBSCAN tự cài đặt trên 12 điểm giả lập. [Tài liệu giữa kỳ](giua_ky/README.md).
+
 ## Quy trình và phân công
 
 | Thứ tự | Thành viên | Notebook |
